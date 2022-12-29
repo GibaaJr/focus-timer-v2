@@ -4,7 +4,7 @@ const btnPlay = document.querySelector('.btnPlay')
 const btnStop = document.querySelector('.btnStop')
 const btnPlus = document.querySelector('.btnPlus')
 const btnMinus = document.querySelector('.btnMinus')
-let minutes = minutesDisplay.textContent
+let minutes = Number(minutesDisplay.textContent)
 let timerTimeOut
 let playClick = 0
 let minutesFromBeggining = minutesDisplay.textContent
@@ -49,15 +49,20 @@ function updateSecondsDisplay (seconds) {
 }
 
 function addMinutes() {
-    minutes = Number(minutesDisplay.textContent)
     let minutesPlus = String(minutes + 5).padStart(2, '0')
     updateMinutesDisplay(minutesPlus)
+    minutes = Number(minutesDisplay.textContent)
 }
 
 function subtractMinutes() {
     minutes = Number(minutesDisplay.textContent)
     let minutesSubtract = String(minutes - 5).padStart(2, '0')
     updateMinutesDisplay(minutesSubtract)
+    minutes = Number(minutesDisplay.textContent)
+    if (minutes <= 0) {
+        minutesDisplay.textContent = String(0).padStart(2, '0')
+        minutes = 0;
+    }
 }
 
 function resetTimer() {
@@ -65,6 +70,8 @@ function resetTimer() {
     updateMinutesDisplay(minutesFromBeggining)
     updateSecondsDisplay(0)
     playClick = 0
+    // atualizar a variavel minutes para evitar bug ao finalizar o tempo, clicar em stop e adicionar 5 minutos.
+    minutes = Number(minutesDisplay.textContent)
 }
 
 function checkPlayButton() {
@@ -76,6 +83,7 @@ function checkPlayButton() {
         playClick = 0
     }
 }
+
 
 
 // EVENTOS
