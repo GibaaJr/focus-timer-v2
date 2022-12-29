@@ -7,6 +7,7 @@ const btnMinus = document.querySelector('.btnMinus')
 let minutes = minutesDisplay.textContent
 let timerTimeOut
 let playClick = 0
+let minutesFromBeggining = minutesDisplay.textContent
 
 
 // FUNÇÕES
@@ -43,6 +44,10 @@ function updateMinutesDisplay (minutes) {
     minutesDisplay.textContent = minutes
 }
 
+function updateSecondsDisplay (seconds) {
+    secondsDisplay.textContent = String(seconds).padStart(2, '0')
+}
+
 function addMinutes() {
     minutes = Number(minutesDisplay.textContent)
     let minutesPlus = String(minutes + 5).padStart(2, '0')
@@ -56,25 +61,32 @@ function subtractMinutes() {
 }
 
 function resetTimer() {
-    minutesDisplay = minutesOrigin
+    hold()
+    updateMinutesDisplay(minutesFromBeggining)
+    updateSecondsDisplay(0)
+    playClick = 0
+}
+
+function checkPlayButton() {
+    if (playClick == 0) {
+        ++playClick
+        countDown()
+    } else {
+        hold()
+        playClick = 0
+    }
 }
 
 
 // EVENTOS
 
 btnPlay.addEventListener('click', () => {
-    if (playClick == 0) {
-        ++playClick
-        countDown()
-    } else {
-        console.log('cheguei')
-        hold()
-        playClick = 0
-    }
+    checkPlayButton()
 })
 
 btnStop.addEventListener('click', () => {
     resetTimer()
+    hold()
 })
 
 btnPlus.addEventListener('click', () => {
