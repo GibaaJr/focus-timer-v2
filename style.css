@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+
+    --bg-color: #E5E5E5;
+    --tt-color: #29292E;
+    --icon-color: #323238;
+    --button-bg-color: #E1E1E6;
+    --active-btn-bg-color: #02799D;
+    --ff-text: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--ff-text);
+}
+
+.page {
+    max-width: 100rem;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+
+    place-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 19rem;
+
+}
+
+.page .timer-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4.8rem;
+}
+
+.page .timer-wrapper span{
+    font-size: 12.6rem;
+    font-weight: 500;
+    color: var(--tt-color);
+}
+
+.page .timer-wrapper .btnTimer {
+    display: flex;
+    gap: 4rem;
+}
+
+.page .timer-wrapper .btnTimer button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.page .card-wrapper {
+    display: grid;
+    grid-template-areas: 
+    "A B"
+    "C D";
+    gap: 3.2rem;
+}
+
+.active {
+    background-color: var(--active-btn-bg-color);
+}
+
+/* .card-wrapper button svg path{
+    fill: white;
+} */
+
+.not-active {
+    background-color: var(--button-bg-color);
+}
+.page .card-wrapper .card {
+    padding: 4.8rem;
+    border-radius: 2.4rem;
+    border: none;
+    cursor: pointer;
+}
+.page .card-wrapper img {
+    fill: #02799D;
+}
