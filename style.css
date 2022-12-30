@@ -65,17 +65,23 @@ body {
     gap: 3.2rem;
 }
 
-.active {
-    background-color: var(--active-btn-bg-color);
+/* Transição de cores dos cards */
+.card-wrapper button svg path{
+    fill: #323238;
 }
-
-/* .card-wrapper button svg path{
-    fill: white;
-} */
 
 .not-active {
     background-color: var(--button-bg-color);
 }
+
+.active {
+    background-color: var(--active-btn-bg-color);
+}
+
+.card-wrapper button.active svg path{
+    fill: white;
+}
+
 .page .card-wrapper .card {
     padding: 4.8rem;
     border-radius: 2.4rem;
