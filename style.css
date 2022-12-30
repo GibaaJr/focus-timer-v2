@@ -13,10 +13,33 @@
     --button-bg-color: #E1E1E6;
     --active-btn-bg-color: #02799D;
     --ff-text: 'Roboto', sans-serif;
+    
+    
+    --dark-bg-color: #121214;
+    --dark-main-color: #C4C4CC;
+    --dark-card-color: #29292E;
+    --dark-card-active-color: #0A3442;
 }
 
 body {
     font-family: var(--ff-text);
+    position: relative;
+}
+
+.hide {
+    display: none;
+}
+
+body button.btn-light-mode,
+body button.btn-dark-mode
+{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    margin: 6rem;
+    top: 0;
+    right: 0;
 }
 
 .page {
@@ -91,3 +114,34 @@ body {
 .page .card-wrapper img {
     fill: #02799D;
 }
+
+
+/* DARK MODE */
+
+body.dark-mode {
+    background-color: var(--dark-bg-color);
+}
+
+.page .timer-wrapper .timer span.dark-mode { 
+    color: white;
+}
+
+.btnTimer button.dark-mode svg path {
+    fill: var(--dark-main-color);
+}
+
+.card-wrapper button.dark-mode {
+    background-color: var(--dark-card-color);
+}
+
+.card-wrapper button.dark-mode svg path{
+    fill: var(--dark-main-color);
+}
+
+.card-wrapper button.dark-mode.active{
+    background-color: var(--dark-card-active-color);
+}
+
+.card-wrapper button.dark-mode.active svg path {
+    fill: white;
+} 

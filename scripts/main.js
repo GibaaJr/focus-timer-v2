@@ -22,6 +22,7 @@ let fireCardAudio = new Audio('./audios/Lareira.wav')
 
 
 
+
 // FUNÇÕES
 function countDown() {
     timerTimeOut = setTimeout(function() {
@@ -131,6 +132,9 @@ function removeActiveFromCards(card, card2, card3) {
     card3.classList.remove('active')
 }
 
+// Dark Mode Functions
+
+
 
 // EVENTOS
 
@@ -180,4 +184,29 @@ fireCard.addEventListener('click', () => {
     pauseCardsAudio(rainCardAudio, storeCardAudio, treeCardAudio)
     activeCard(fireCard)
     removeActiveFromCards(rainCard, storeCard, treeCard)
+})
+
+
+// Dark Mode
+const btnLightMode = document.querySelector('.btn-light-mode')
+const btnDarkMode = document.querySelector('.btn-dark-mode')
+let lightModeClass = document.querySelectorAll('.light-mode')
+
+
+function activeDarkMode() {
+    for (let i = 0; i <= lightModeClass.length; i++) {
+        lightModeClass[i].classList.toggle('dark-mode')
+    }
+}
+
+
+
+btnLightMode.addEventListener('click', () => {
+    activeDarkMode()
+    btnLightMode.classList.add('hide')
+    btnDarkMode.classList.remove('hide')
+})
+
+btnDarkMode.addEventListener('click', () => {
+    activeDarkMode()
 })
