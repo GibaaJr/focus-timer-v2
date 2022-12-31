@@ -9,21 +9,45 @@ let timerTimeOut
 let playClick = 0
 let minutesFromBeggining = minutesDisplay.textContent
 
+
 // Card Variables
+let btnTreeCard = document.querySelector('.btnTree')
+let btnRainCard = document.querySelector('.btnRain')
+let btnStoreCard = document.querySelector('.btnStore')
+let btnFireCard = document.querySelector('.btnFire')
+
+
+
 let treeCard = document.querySelector('.tree')
 let rainCard = document.querySelector('.rain')
 let storeCard = document.querySelector('.store')
 let fireCard = document.querySelector('.fire')
+
+let inputCards = document.querySelectorAll('input[type="range"]')
+
+let treeInputCard = document.querySelector('input[type="range"].treeInput')
+let rainInputCard = document.querySelector('input[type="range"].rainInput')
+let storeInputCard = document.querySelector('input[type="range"].storeInput')
+let fireInputCard = document.querySelector('input[type="range"].fireInput')
+
+
+let cards = document.querySelectorAll('.card')
 
 let treeCardAudio = new Audio('./audios/Floresta.wav')
 let rainCardAudio = new Audio('./audios/Chuva.wav')
 let storeCardAudio = new Audio('./audios/Cafeteria.wav')
 let fireCardAudio = new Audio('./audios/Lareira.wav')
 
+let volumeTree = treeInputCard.value
+let volumeRain = rainInputCard.value
+let volumeStore = storeInputCard.value
+let volumeFire = fireInputCard.value
 
 
 
-// FUNÇÕES
+
+
+// FUNÇÕES TIMER
 function countDown() {
     timerTimeOut = setTimeout(function() {
         let seconds = Number(secondsDisplay.textContent)
@@ -118,12 +142,13 @@ function verifyAudioPlaying(card) {
     if (card.currentTime > 0 && !card.paused) {
         pauseAudio(card)
     } else {
-        card.play()
+        playCardAudio(card)
     }
 }
 
-function activeCard(card) {
+function activeCard(card, input) {
     card.classList.toggle('active')
+    input.classList.toggle('active')
 }
 
 function removeActiveFromCards(card, card2, card3) {
@@ -132,11 +157,15 @@ function removeActiveFromCards(card, card2, card3) {
     card3.classList.remove('active')
 }
 
-// Dark Mode Functions
+
+function volumeChange(audioCard, volume) {
+    audioCard.volume = volume
+}
 
 
 
-// EVENTOS
+
+// EVENTOS TIMER
 
 btnPlay.addEventListener('click', () => {
     checkPlayButton()
@@ -158,55 +187,74 @@ btnMinus.addEventListener('click', () => {
 
 // Cards Events
 
-treeCard.addEventListener('click', () => {
+btnTreeCard.addEventListener('click', () => {
     verifyAudioPlaying(treeCardAudio)
     pauseCardsAudio(rainCardAudio, storeCardAudio, fireCardAudio)
-    activeCard(treeCard)
+    activeCard(treeCard, treeInputCard)
     removeActiveFromCards(rainCard, storeCard, fireCard)
 })
 
-rainCard.addEventListener('click', () => {
+btnRainCard.addEventListener('click', () => {
     verifyAudioPlaying(rainCardAudio)
     pauseCardsAudio(treeCardAudio, storeCardAudio, fireCardAudio)
-    activeCard(rainCard)
+    activeCard(rainCard, rainInputCard)
     removeActiveFromCards(treeCard, storeCard, fireCard)
 })
 
-storeCard.addEventListener('click', () => {
+btnStoreCard.addEventListener('click', () => {
     verifyAudioPlaying(storeCardAudio)
     pauseCardsAudio(rainCardAudio, treeCardAudio, fireCardAudio)
-    activeCard(storeCard)
+    activeCard(storeCard, storeInputCard)
     removeActiveFromCards(rainCard, treeCard, fireCard)
 })
 
-fireCard.addEventListener('click', () => {
+btnFireCard.addEventListener('click', () => {
     verifyAudioPlaying(fireCardAudio)
     pauseCardsAudio(rainCardAudio, storeCardAudio, treeCardAudio)
-    activeCard(fireCard)
+    activeCard(fireCard, fireInputCard)
     removeActiveFromCards(rainCard, storeCard, treeCard)
 })
 
+treeInputCard.addEventListener('change', () => {
+    volumeTree = (Number(treeInputCard.value)) / 100 
+    volumeChange(treeCardAudio, volumeTree)
+    
+})
+rainInputCard.addEventListener('change', () => {
+    volumeRain = (Number(rainInputCard.value)) / 100 
+    volumeChange(rainCardAudio, volumeRain)
+})
+storeInputCard.addEventListener('change', () => {
+    volumeStore = (Number(storeInputCard.value)) / 100 
+    volumeChange(storeCardAudio, volumeStore)
+})
+fireInputCard.addEventListener('change', () => {
+    volumeFire = (Number(fireInputCard.value)) / 100 
+    volumeChange(fireCardAudio, volumeFire)
+})
 
 // Dark Mode
 const btnLightMode = document.querySelector('.btn-light-mode')
 const btnDarkMode = document.querySelector('.btn-dark-mode')
-let lightModeClass = document.querySelectorAll('.light-mode')
-
+const lightModeClass = document.querySelectorAll('.light-mode')
 
 function activeDarkMode() {
-    for (let i = 0; i <= lightModeClass.length; i++) {
+    btnLightMode.classList.toggle('hide')
+    btnDarkMode.classList.toggle('hide')
+    for (let i = 0; i < inputCards.length; i++) {
+        inputCards[i].classList.toggle('dark-mode')
+    }
+
+    for (let i = 0; i < lightModeClass.length; i++) {
         lightModeClass[i].classList.toggle('dark-mode')
     }
 }
 
-
-
 btnLightMode.addEventListener('click', () => {
     activeDarkMode()
-    btnLightMode.classList.add('hide')
-    btnDarkMode.classList.remove('hide')
 })
 
 btnDarkMode.addEventListener('click', () => {
     activeDarkMode()
 })
+

@@ -88,7 +88,51 @@ body button.btn-dark-mode
     gap: 3.2rem;
 }
 
+.card-wrapper .card .active {
+    background: var(--active-btn-bg-color);
+}
+
+.card-wrapper .card{
+    padding: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2.4rem;
+}
+
+
+.page .card-wrapper .btnCard {
+    background: transparent;
+    border-radius: 2.4rem;
+    border: none;
+    cursor: pointer;
+}
+
+.card-wrapper .card input[type="range"] {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 7px;
+    background: #323238;
+    border-radius: 5px;
+    margin-top: 3.2rem;
+}   
+
+.card-wrapper .card input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #323238;
+}
+
 /* Transição de cores dos cards */
+.card-wrapper .card.active button svg path{
+    fill: white;
+}
+
+
+
 .card-wrapper button svg path{
     fill: #323238;
 }
@@ -101,19 +145,14 @@ body button.btn-dark-mode
     background-color: var(--active-btn-bg-color);
 }
 
-.card-wrapper button.active svg path{
-    fill: white;
+.card-wrapper .card input[type="range"].active {
+    background: white;
+}   
+
+.card-wrapper .card input[type="range"]::-webkit-slider-thumb .active {
+    background: white;
 }
 
-.page .card-wrapper .card {
-    padding: 4.8rem;
-    border-radius: 2.4rem;
-    border: none;
-    cursor: pointer;
-}
-.page .card-wrapper img {
-    fill: #02799D;
-}
 
 
 /* DARK MODE */
@@ -130,18 +169,26 @@ body.dark-mode {
     fill: var(--dark-main-color);
 }
 
-.card-wrapper button.dark-mode {
+.card-wrapper .card.dark-mode {
     background-color: var(--dark-card-color);
 }
 
-.card-wrapper button.dark-mode svg path{
+.card-wrapper .card.dark-mode svg path{
     fill: var(--dark-main-color);
 }
 
-.card-wrapper button.dark-mode.active{
+.card-wrapper .card.dark-mode.active{
     background-color: var(--dark-card-active-color);
 }
 
-.card-wrapper button.dark-mode.active svg path {
+.card-wrapper .card.dark-mode.active svg path {
     fill: white;
 } 
+
+.card-wrapper .card input[type="range"].dark-mode {
+    background: white;
+}   
+
+.card-wrapper .card input[type="range"]::-webkit-slider-thumb.dark-mode {
+    background: white;
+}
