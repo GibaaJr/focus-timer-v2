@@ -1,3 +1,6 @@
+// Timer Variables
+
+
 let minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
 const btnPlay = document.querySelector('.btnPlay')

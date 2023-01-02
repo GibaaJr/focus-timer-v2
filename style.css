@@ -1,3 +1,5 @@
+/* GENERAL SETINGS */
+
 * {
     margin: 0;
     padding: 0;
@@ -41,6 +43,9 @@ body button.btn-dark-mode
     top: 0;
     right: 0;
 }
+
+/* PAGES */
+
 
 .page {
     max-width: 100rem;
@@ -88,6 +93,9 @@ body button.btn-dark-mode
     gap: 3.2rem;
 }
 
+
+/* CARDS */
+
 .card-wrapper .card .active {
     background: var(--active-btn-bg-color);
 }
@@ -126,12 +134,13 @@ body button.btn-dark-mode
     background: #323238;
 }
 
+
+
+
 /* Transição de cores dos cards */
 .card-wrapper .card.active button svg path{
     fill: white;
 }
-
-
 
 .card-wrapper button svg path{
     fill: #323238;
